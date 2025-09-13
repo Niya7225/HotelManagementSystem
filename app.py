@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_migrate import Migrate  # IMPORT THIS LINE
 from models import db, Hotel, Staff, Guest, RoomType, Room, Reservation, Billing, Payment, Service, Bill_Service
 
 app = Flask(__name__)
@@ -9,6 +10,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database with your app
 db.init_app(app)
+
+# INITIALIZE FLASK-MIGRATE HERE
+migrate = Migrate(app, db) # ADD THIS LINE
 
 # --- Your API Endpoints Go Here ---
 
