@@ -1,22 +1,27 @@
 from flask import Flask, request, jsonify
-from models import db, Guest, Room, Reservation, Staff, RoomType, Billing, Payment, Service, Bill_Service
+from models import db, Hotel, Staff, Guest, RoomType, Room, Reservation, Billing, Payment, Service, Bill_Service
 
 app = Flask(__name__)
 
-# The database config and db.init_app will be added later
-# once your teammate gives you the credentials.
+# --- Database Configuration (UPDATE THIS WITH YOUR CREDENTIALS) ---
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://hotel_user:dbms@123@192.168.114.194/hotel_management_system'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialize the database with your app
+db.init_app(app)
 
 # --- Your API Endpoints Go Here ---
 
-# Example: A simple "Hello, World!" to test the server
+# A simple endpoint to test if the server is running
 @app.route('/')
 def index():
     return "Hello, this is the Hotel Management System Backend!"
 
-# Example: A placeholder for your Guest API endpoint
+# A placeholder endpoint for creating a new Guest
 @app.route('/api/guests', methods=['POST'])
 def create_guest():
-    # You will add the logic to save a guest here later
+    # You will add the logic to save a guest here later,
+    # once you have tested the database connection.
     return "This endpoint is a work in progress!"
 
 # --- End of API Endpoints ---
